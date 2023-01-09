@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: rgb(235, 235, 235);
+        }
+
+        form {
+            width: 400px;
+            height: 400px;
+            background-color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        form input {
+            width: 100%;
+            height: 30px;
+            display: block;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            box-sizing: border-box;
+        }
+
+        .mya {
+            width: 100%;
+            height: 30px;
+            margin-bottom: 20px;
+        }
+
+        .mya a:nth-child(1) {
+            float: left;
+        }
+
+        .mya a:nth-child(2) {
+            float: right;
+        }
+
+        button {
+            width: 100%;
+            height: 40px;
+            background-color: rgb(235, 235, 235);
+            border: none;
+        }
+
+        button:active {
+            box-shadow: 0 0 3px rgb(173, 172, 172);
+
+        }
+    </style>
+</head>
+<body>
+<form method="post">
+    <h2>User Login</h2>
+    {% csrf_token %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <input id="user_id" type="text" placeholder="Enter User ID/Email" name="user_id">
+    <input id="password" type="password" placeholder="Enter Password" name="password">
+    <div class="mya">
+        <a href="{% url 'register' %}">Sign Up</a>
+    </div>
+    <button id="login-btn" type="submit">Login</button>
+</form>
+
+
+</body>
+</html>
